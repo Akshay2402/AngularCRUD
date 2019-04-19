@@ -1,0 +1,84 @@
+<!-- main app container -->
+<div class="jumbotron">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-8 offset-md-2">
+              <h4>Update Product Details</h4>
+              <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                  <div class="form-group">
+                    <label for="productName">Product Name</label>
+                    <input type="text" class="form-control" name="productName" [(ngModel)]="model.productName" #productName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && productName.invalid }" required />
+                    <div *ngIf="f.submitted && productName.invalid" class="invalid-feedback">
+                      <div *ngIf="productName.errors.required">Product Name is required</div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="productWeight">Product Weight</label>
+                    <input type="text" class="form-control" name="productWeight" [(ngModel)]="model.productWeight" #productWeight="ngModel" [ngClass]="{ 'is-invalid': f.submitted && productWeight.invalid }" required />
+                    <div *ngIf="f.submitted && productWeight.invalid" class="invalid-feedback">
+                        <div *ngIf="productWeight.errors.required">Product Weight is required</div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="productAvailability">Product Availability</label>
+                    <input type="number" class="form-control" name="productAvailability" [(ngModel)]="model.productAvailability" #productAvailability="ngModel" [ngClass]="{ 'is-invalid': f.submitted && productAvailability.invalid }" />
+                    <div *ngIf="f.submitted && productAvailability.invalid" class="invalid-feedback">
+                      <div *ngIf="productAvailability.errors.required">Product Availability must be a number and is required</div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="productURL">Product URL</label>
+                    <input type="text" class="form-control" name="productURL" [(ngModel)]="model.productURL" #productURL="ngModel" [ngClass]="{ 'is-invalid': f.submitted && productURL.invalid }" required />
+                    <div *ngIf="f.submitted && productURL.invalid" class="invalid-feedback">
+                        <div *ngIf="productURL.errors.required">Product URL is required</div>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="productTier">Product Tier</label>
+                    <div class="custom-control custom-radio">
+                      <input id="budget" type="radio" class="custom-control-input" value="budget" name="priceTier" [(ngModel)]="model.priceTier" required>
+                      <label class="custom-control-label" for="budget">Budget</label>
+                    </div>
+
+                    <div class="custom-control custom-radio">
+                      <input id="premier" type="radio" class="custom-control-input" value="premier" name="priceTier" [(ngModel)]="model.priceTier" required>
+                      <label class="custom-control-label" for="premier">Premier</label>
+                    </div>
+                    
+                    <div *ngIf = 'f.submitted && !model.priceTier' >
+                      <p style="color: #dc3545; font-size: 80%">Please select price tier</p>
+                    </div>
+                  </div>
+
+                  <div *ngIf="model.priceTier === 'budget'" class="form-group">
+                    <label for="productRange">Product Range</label>
+                    <select [(ngModel)]="model.productRange" class="form-control" name="productRange" id="productRange" required>
+                      <option *ngFor="let productRange of pricing.budget" [value]="productRange">{{productRange}}</option>
+                    </select>
+                  </div>
+
+                  <div *ngIf="model.priceTier === 'premier'" class="form-group">
+                    <label for="productRange">Product Range</label>
+                    <select [(ngModel)]="model.productRange" class="form-control" name="productRange" id="productRange" required>
+                      <option *ngFor="let productRange of pricing.premier" [value]="productRange">{{productRange}}</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="editable">Edit Product</label> <br>
+                    <mat-checkbox (change)="editable($event)" value="true">Can be edited</mat-checkbox> <br>
+                    <mat-checkbox (change)="editable($event)" value="false">Cannot be edited</mat-checkbox>
+                    <div *ngIf = 'f.submitted && !model.isEditable' >
+                      <p style="color: #dc3545; font-size: 80%">Please select action</p>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <button mat-raised-button color = "warn">Submit Editted Details</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
