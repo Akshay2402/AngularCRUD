@@ -10,3 +10,8 @@ or
 ```
 ng serve -o
 ```
+# Login details
+```
+username: admin
+password: 123
+```
