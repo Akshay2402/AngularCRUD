@@ -2,10 +2,10 @@ openapi: '3.0.0'
 info:
   version: '1.0.0'
   title: 'Sample API'
-  description: Buy or rent spacecrafts
+  description: Buy or rent spacecrafts - updated by AKSHAY
 
 paths:
-  /spacecrafts/{spacecraftId}/modified:
+  /spacecrafts/{spacecraftId}/AKSHAY:
     parameters:
       - name: spacecraftId
         description: The unique identifier of the spacecraft
