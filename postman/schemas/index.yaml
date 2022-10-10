@@ -5,7 +5,7 @@ info:
   description: Buy or rent spacecrafts
 
 paths:
-  /spacecrafts/{spacecraftId}/akshay:
+  /spacecrafts/{spacecraftId}/default:
     parameters:
       - name: spacecraftId
         description: The unique identifier of the spacecraft
